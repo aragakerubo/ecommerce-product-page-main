@@ -4,7 +4,8 @@ export const Wrapper = styled.div`
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	grid-template-rows: 1fr;
-	max-width: 150px;
+	width: 30%;
+	min-width: 150px;
 	height: 45px;
 	border-radius: 5px;
 	overflow: hidden;
@@ -42,4 +43,9 @@ export const Input = styled.input`
 	height: 100%;
 	text-align: center;
 	border: none;
+
+	&:active,
+	&:focus {
+		outline: none;
+	}
 `;

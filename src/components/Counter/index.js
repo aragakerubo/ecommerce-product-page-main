@@ -20,7 +20,7 @@ export default function Counter() {
 
 	return (
 		<Wrapper>
-			<Button onClick={handleSubtraction}>
+			<Button type="submit" onClick={handleSubtraction}>
 				<img alt="add-item" src={minusSign} />
 			</Button>
 
@@ -30,7 +30,7 @@ export default function Counter() {
 				onChange={(e) => setCounter(e.target.value)}
 				readOnly
 			/>
-			<Button onClick={handleAddition}>
+			<Button type="submit" onClick={handleAddition}>
 				<img alt="remove-item" src={plusSign} />
 			</Button>
 		</Wrapper>
