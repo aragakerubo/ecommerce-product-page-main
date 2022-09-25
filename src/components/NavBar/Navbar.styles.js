@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.nav`
+	position: relative;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -58,20 +59,37 @@ export const Cart = styled.div`
 	height: 20px;
 	cursor: pointer;
 	overflow: hidden;
+	filter: ${(props) => (props.active ? "brightness(40%)" : "none")};
 
 	img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 	}
+
+	img:hover,
+	img:active {
+		filter: brightness(30%);
+	}
 `;
 
-export const Profile = styled(Cart)`
+export const Profile = styled.div`
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
+	cursor: pointer;
+	overflow: hidden;
+	outline: ${(props) =>
+		props.active ? "0.1rem solid var(--orange)" : "none"};
 
-	&:active {
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&:active,
+	&:hover {
 		outline: 0.1rem solid var(--orange);
 	}
 `;

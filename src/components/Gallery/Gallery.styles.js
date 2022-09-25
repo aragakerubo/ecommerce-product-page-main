@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
 	display: grid;
-	grid-template-columns: repeat(4, minmax(0, 1fr));
-	grid-template-rows: repeat(5, minmax(0, 1fr));
+	grid-template-columns: repeat(4, minmax(0, 90px));
+	grid-template-rows: repeat(5, minmax(0, 90px));
 	gap: 25px;
-	max-width: 435px;
-	max-height: 550px;
+	min-width: 435px;
+	min-height: 550px;
 `;
 
 export const MainImg = styled.div`
