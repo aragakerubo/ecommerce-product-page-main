@@ -9,18 +9,16 @@ import {
 } from "./PriceTag.styles";
 
 export default function PriceTag(props) {
-	let discount = (
-		(parseInt(props.originalPrice) * parseInt(props.discount)) /
-		100
-	).toFixed(2);
 	return (
 		<Wrapper>
 			<Container>
-				<Price>{`$${discount || props.originalPrice}`}</Price>
+				<Price>{`$${props.currentPrice || props.originalPrice}`}</Price>
 				{props.discount && <Discount>{`${props.discount}%`}</Discount>}
 			</Container>
 			{props.discount && (
-				<OriginalPrice>{`$${props.originalPrice}`}</OriginalPrice>
+				<OriginalPrice>
+					{`$${parseInt(props.originalPrice).toFixed(2)}`}
+				</OriginalPrice>
 			)}
 		</Wrapper>
 	);

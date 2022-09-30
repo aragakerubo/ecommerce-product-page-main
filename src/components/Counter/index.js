@@ -1,12 +1,12 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext } from "react";
 
 import { Wrapper, Button, Input } from "./Counter.styles";
+import { CounterContext } from "../../pages/ProductPage";
 import plusSign from "../../images/icon-plus.svg";
 import minusSign from "../../images/icon-minus.svg";
 
 export default function Counter() {
-	const [counter, setCounter] = useState(0);
+	const [counter, setCounter] = useContext(CounterContext);
 
 	function handleSubtraction() {
 		setCounter((prevState) =>
@@ -18,6 +18,10 @@ export default function Counter() {
 		setCounter((prevState) => prevState + 1);
 	}
 
+	function handleChange(event) {
+		setCounter(event.target.value);
+	}
+
 	return (
 		<Wrapper>
 			<Button type="submit" onClick={handleSubtraction}>
@@ -27,7 +31,7 @@ export default function Counter() {
 			<Input
 				placeholder={counter}
 				value={counter}
-				onChange={(e) => setCounter(e.target.value)}
+				onChange={(event) => handleChange(event)}
 				readOnly
 			/>
 			<Button type="submit" onClick={handleAddition}>

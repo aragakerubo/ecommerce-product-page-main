@@ -40,12 +40,12 @@ export const Menu = styled.ul`
 		font-size: 16px;
 		cursor: pointer;
 		color: var(--darkGrayishBlue);
-		transition: 0.1s;
 	}
 
 	li:hover,
 	li:active {
 		border-bottom: 3px solid var(--orange);
+		margin-bottom: -3px;
 		color: var(--black);
 	}
 `;
@@ -55,21 +55,36 @@ export const CartProfile = styled(LogoMenu)`
 `;
 
 export const Cart = styled.div`
+	position: relative;
 	width: 20px;
 	height: 20px;
 	cursor: pointer;
-	overflow: hidden;
-	filter: ${(props) => (props.active ? "brightness(40%)" : "none")};
+
+	p {
+		width: 20px;
+		height: 11px;
+		font-size: 9px;
+		font-weight: 600;
+		text-align: center;
+		position: absolute;
+		top: -0.2rem;
+		right: -0.5rem;
+		background-color: var(--orange);
+		color: var(--white);
+		border-radius: 10px;
+		z-index: 10;
+	}
 
 	img {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		filter: ${(props) => (props.active ? "brightness(40%)" : "none")};
 	}
 
 	img:hover,
 	img:active {
-		filter: brightness(30%);
+		filter: brightness(40%);
 	}
 `;
 

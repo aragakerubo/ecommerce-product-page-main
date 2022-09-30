@@ -1,6 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
+import { CartContext } from "../../context";
 import {
 	Wrapper,
 	LogoMenu,
@@ -17,6 +18,7 @@ import CartImg from "../../images/icon-cart.svg";
 
 export default function Navbar(props) {
 	const [viewCart, setViewCart] = useState(false);
+	const [cartItems] = useContext(CartContext);
 
 	let avatar = props.avatar || ProfileImg;
 
@@ -38,6 +40,7 @@ export default function Navbar(props) {
 			</LogoMenu>
 			<CartProfile>
 				<Cart active={viewCart} onClick={handleViewCart}>
+					{cartItems.TotalItems > 0 && <p>{cartItems.TotalItems}</p>}
 					<img alt="shopping-cart" src={CartImg} />
 				</Cart>
 				<Profile active={viewCart} onClick={handleViewCart}>

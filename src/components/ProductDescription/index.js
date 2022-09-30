@@ -11,28 +11,37 @@ import PriceTag from "../PriceTag";
 import Counter from "../Counter";
 import Button from "../Button";
 
-const dummyProduct = {
-	originalPrice: "250.00",
-	discount: "50",
-};
+import shoppingCart from "../../images/icon-cart-white.svg";
 
-export default function ProductDescription() {
+export default function ProductDescription(props) {
+	let currentPrice = (
+		(parseInt(props.productInfo.Price.OriginalPrice) *
+			(100 - parseInt(props.productInfo.Price.Discount))) /
+		100
+	).toFixed(2);
 	return (
 		<Wrapper>
-			<BrandName>Sneaker Company</BrandName>
-			<ProductName>Fall Limited Edition Sneakers</ProductName>
-			<Info>
-				These low-profile sneakers are your perfect casual wear
-				companion. Featuring a durable rubber outer sole, they'll
-				withstand everything the weather can offer.
-			</Info>
+			<BrandName>{props.productInfo.BrandName}</BrandName>
+			<ProductName>{props.productInfo.ProductName}</ProductName>
+			<Info>{props.productInfo.ProductDescription}</Info>
 			<PriceTag
-				originalPrice={dummyProduct.originalPrice}
-				discount={dummyProduct.discount}
+				originalPrice={props.productInfo.Price.OriginalPrice}
+				discount={props.productInfo.Price.Discount}
+				currentPrice={currentPrice}
 			/>
 			<Container>
 				<Counter />
-				<Button />
+				<Button
+					handleButtonClick={() =>
+						props.handleButtonClick(
+							currentPrice,
+							props.productInfo.ProductName,
+							props.productThumbnail
+						)
+					}
+					text="Add to cart"
+					imgUrl={shoppingCart}
+				/>
 			</Container>
 		</Wrapper>
 	);

@@ -12,8 +12,8 @@ export const Wrapper = styled.button`
 	column-gap: 1em;
 	padding: 0;
 	height: 100%;
-	width: 50%;
-	min-width: 200px;
+	width: 80%;
+	min-width: 250px;
 	font-size: 13px;
 	font-weight: 600;
 	text-align: center;

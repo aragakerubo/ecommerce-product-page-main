@@ -1,12 +1,12 @@
 import React from "react";
 
 import { Wrapper } from "./Button.styles";
-import shoppingCart from "../../images/icon-cart-white.svg";
 
-export default function Button() {
+export default function Button(props) {
 	return (
-		<Wrapper type="button">
-			<img alt="add-to-cart" src={shoppingCart} /> Add to cart
+		<Wrapper type="button" onClick={props.handleButtonClick}>
+			{props.imgUrl && <img alt="add-to-cart" src={props.imgUrl} />}
+			{props.text}
 		</Wrapper>
 	);
 }
