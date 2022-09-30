@@ -3,13 +3,16 @@ import ProductPage from "./pages/ProductPage";
 
 import { GlobalStyles } from "./GlobalStyles";
 
+// Context
+import UserInfoProvider from "./context";
+
 function App() {
 	return (
-		<div>
+		<UserInfoProvider>
 			<GlobalStyles />
 			<NavBar />
 			<ProductPage />
-		</div>
+		</UserInfoProvider>
 	);
 }
 

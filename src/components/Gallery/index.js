@@ -2,42 +2,21 @@ import { useState } from "react";
 import { nanoid } from "nanoid";
 
 import { Wrapper, MainImg, MiniImg } from "./Gallery.styles";
-import Img1 from "../../images/image-product-1.jpg";
-import Img2 from "../../images/image-product-2.jpg";
-import Img3 from "../../images/image-product-3.jpg";
-import Img4 from "../../images/image-product-4.jpg";
 
-const Images = [
-	{
-		id: 0,
-		image: Img1,
-	},
-	{
-		id: 1,
-		image: Img2,
-	},
-	{
-		id: 2,
-		image: Img3,
-	},
-	{
-		id: 3,
-		image: Img4,
-	},
-];
-
-export default function Gallery() {
-	const [mainImage, setMainImage] = useState(Images[0].image);
-	const [selectedImage, setSelectedImage] = useState(Images[0].id);
+export default function Gallery(props) {
+	const [mainImage, setMainImage] = useState(props.productImages[0].image);
+	const [selectedImage, setSelectedImage] = useState(
+		props.productImages[0].id
+	);
 
 	function handleSetMainImage(event) {
 		let id = event.currentTarget.id;
-		let Img = Images[id].image;
+		let Img = props.productImages[id].image;
 		setMainImage(Img);
 		setSelectedImage(id);
 	}
 
-	let ImageGrid = Images.map((image) => {
+	let ImageGrid = props.productImages.map((image) => {
 		let isSelected = parseInt(image.id) === parseInt(selectedImage);
 		return (
 			<MiniImg
@@ -46,7 +25,7 @@ export default function Gallery() {
 				isSelected={isSelected}
 				onClick={(event) => handleSetMainImage(event)}
 			>
-				<img alt="product" src={image.image} />
+				<img alt="product" src={image.thumbnail} />
 			</MiniImg>
 		);
 	});
