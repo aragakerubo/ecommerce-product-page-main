@@ -112,6 +112,10 @@ export const DeleteButton = styled.button`
 		height: auto;
 		object-fit: contain;
 	}
+
+	&:hover {
+		filter: brightness(40%);
+	}
 `;
 
 export const CheckoutButton = styled.button`
