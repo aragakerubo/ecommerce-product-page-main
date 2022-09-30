@@ -113,8 +113,10 @@ export const DeleteButton = styled.button`
 		object-fit: contain;
 	}
 
-	img:hover {
-		filter: brightness(40%);
+	&:hover {
+		img {
+			filter: brightness(40%);
+		}
 	}
 `;
 
