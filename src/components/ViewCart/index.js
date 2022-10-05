@@ -16,14 +16,14 @@ import rubbishbin from "../../images/icon-delete.svg";
 export default function ViewCart() {
 	const [cartItems, setCartItems] = useContext(CartContext);
 
-	function handleDelete(event, orderId) {
+	function handleDelete(event, itemId) {
 		event.stopPropagation();
 		setCartItems((prevState) => {
 			let deletedItem = prevState.CartItems.find(
-				(item) => item.orderId === orderId
+				(item) => item.itemId === itemId
 			);
 			let newCartItems = prevState.CartItems.filter(
-				(item) => item.orderId !== orderId
+				(item) => item.itemId !== itemId
 			);
 			let newTotalItems =
 				prevState.TotalItems - parseInt(deletedItem.quantity);
@@ -38,7 +38,7 @@ export default function ViewCart() {
 	}
 
 	const CartItems = cartItems.CartItems.map((item) => (
-		<CartItem key={item.orderId} id={item.orderId}>
+		<CartItem key={item.itemId} id={item.itemId}>
 			<img src={item.thumbnail} alt="product" />
 			<OrderDetails>
 				<p>{item.productName}</p>
@@ -52,7 +52,7 @@ export default function ViewCart() {
 				</div>
 			</OrderDetails>
 			<DeleteButton
-				onClick={(event) => handleDelete(event, item.orderId)}
+				onClick={(event) => handleDelete(event, item.itemId)}
 			>
 				<img src={rubbishbin} alt="delete" />
 			</DeleteButton>
