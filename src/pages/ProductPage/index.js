@@ -10,45 +10,62 @@ import { nanoid } from "nanoid";
 export const CounterContext = createContext();
 
 export default function ProductPage() {
-	const [counter, setCounter] = useState(0);
-	const [, setCartItems] = useContext(CartContext);
+  const [counter, setCounter] = useState(0);
+  const [cartItems, setCartItems] = useContext(CartContext);
 
-	function handleButtonClick(currentPrice, productName, thumbnail, itemId) {
-		if (parseInt(counter) > 0) {
-			let quantity = counter;
-			const newItem = {
-				itemId: itemId,
-				orderId: nanoid(),
-				quantity: quantity,
-				price: currentPrice,
-				productName: productName,
-				thumbnail: thumbnail,
-			};
+  function handleButtonClick(currentPrice, productName, thumbnail, itemId) {
+    if (parseInt(counter) > 0) {
+      let newQuantity = counter;
 
-			setCartItems((prevState) => {
-				let TotalItems = prevState.TotalItems + parseInt(quantity);
-				let CartItems = [...prevState.CartItems, newItem];
-				const newCart = {
-					TotalItems,
-					CartItems,
-				};
+      setCartItems((prevState) => {
+        let TotalItems = prevState.TotalItems + parseInt(newQuantity);
+        let CartItems = [];
+        let itemExistsIndex = prevState.CartItems.findIndex(
+          (item) => item.itemId === itemId
+        );
 
-				return newCart;
-			});
-		}
-		// console.log(cartItems);
-	}
+        if (itemExistsIndex >= 0) {
+          CartItems = prevState.CartItems.map((item, index) => {
+            const itemObj = Object.assign({}, item);
+            if (index === itemExistsIndex) {
+              itemObj.quantity = parseInt(itemObj.quantity) + newQuantity;
+            }
 
-	return (
-		<CounterContext.Provider value={[counter, setCounter]}>
-			<Wrapper>
-				<Gallery productImages={data.Products[0].Images} />
-				<ProductDescription
-					productInfo={data.Products[0].ProductInfo}
-					productThumbnail={data.Products[0].Images[0].thumbnail}
-					handleButtonClick={handleButtonClick}
-				/>
-			</Wrapper>
-		</CounterContext.Provider>
-	);
+            return itemObj;
+          });
+        } else {
+          const newItem = {
+            itemId: itemId,
+            orderId: nanoid(),
+            quantity: newQuantity,
+            price: currentPrice,
+            productName: productName,
+            thumbnail: thumbnail,
+          };
+          CartItems = [...prevState.CartItems, newItem];
+        }
+        const newCart = {
+          TotalItems,
+          CartItems,
+        };
+
+        return newCart;
+      });
+    }
+    console.log(cartItems);
+  }
+
+  return (
+    <CounterContext.Provider value={[counter, setCounter]}>
+      <Wrapper>
+        <Gallery productImages={data.Products[0].Images} />
+        <ProductDescription
+          productInfo={data.Products[0].ProductInfo}
+          productThumbnail={data.Products[0].Images[0].thumbnail}
+          productId={data.Products[0].ItemId}
+          handleButtonClick={handleButtonClick}
+        />
+      </Wrapper>
+    </CounterContext.Provider>
+  );
 }

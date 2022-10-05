@@ -36,7 +36,8 @@ export default function ProductDescription(props) {
 						props.handleButtonClick(
 							currentPrice,
 							props.productInfo.ProductName,
-							props.productThumbnail
+							props.productThumbnail,
+							props.productId
 						)
 					}
 					text="Add to cart"
