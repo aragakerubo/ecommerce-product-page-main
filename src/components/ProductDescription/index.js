@@ -42,6 +42,7 @@ export default function ProductDescription(props) {
 					}
 					text="Add to cart"
 					imgUrl={shoppingCart}
+					cursorType={props.cursorType}
 				/>
 			</Container>
 		</Wrapper>

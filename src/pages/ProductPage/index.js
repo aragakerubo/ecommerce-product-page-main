@@ -11,14 +11,15 @@ export const CounterContext = createContext();
 
 export default function ProductPage() {
   const [counter, setCounter] = useState(0);
-  const [cartItems, setCartItems] = useContext(CartContext);
+  const [, setCartItems] = useContext(CartContext);
+  let cursorType = counter === 0 ? "not-allowed" : "pointer";
 
   function handleButtonClick(currentPrice, productName, thumbnail, itemId) {
     if (parseInt(counter) > 0) {
       let newQuantity = counter;
 
       setCartItems((prevState) => {
-        let TotalItems = prevState.TotalItems + parseInt(newQuantity);
+        let TotalItems = 0;
         let CartItems = [];
         let itemExistsIndex = prevState.CartItems.findIndex(
           (item) => item.itemId === itemId
@@ -28,12 +29,14 @@ export default function ProductPage() {
           CartItems = prevState.CartItems.map((item, index) => {
             const itemObj = Object.assign({}, item);
             if (index === itemExistsIndex) {
-              itemObj.quantity = parseInt(itemObj.quantity) + newQuantity;
+              TotalItems = prevState.TotalItems + parseInt(newQuantity) - parseInt(itemObj.quantity);
+              itemObj.quantity =  newQuantity;
             }
 
             return itemObj;
           });
         } else {
+          TotalItems = prevState.TotalItems + parseInt(newQuantity);
           const newItem = {
             itemId: itemId,
             orderId: nanoid(),
@@ -52,7 +55,7 @@ export default function ProductPage() {
         return newCart;
       });
     }
-    console.log(cartItems);
+    // console.log(cartItems);
   }
 
   return (
@@ -64,6 +67,7 @@ export default function ProductPage() {
           productThumbnail={data.Products[0].Images[0].thumbnail}
           productId={data.Products[0].ItemId}
           handleButtonClick={handleButtonClick}
+          cursorType={cursorType}
         />
       </Wrapper>
     </CounterContext.Provider>
