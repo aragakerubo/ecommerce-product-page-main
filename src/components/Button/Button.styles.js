@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-// export const Wrapper = styled.div`
-// 	display: flex;
-// 	height: 100%;
-// `;
 
 export const Wrapper = styled.button`
 	display: flex;
@@ -22,7 +18,8 @@ export const Wrapper = styled.button`
 	border: none;
 	border-radius: 5px;
 	box-shadow: 0 8px 28px -8px var(--orange);
-	cursor: pointer;
+	cursor: ${props => props.cursorType};
+	filter: ${props => props.cursorType === 'not-allowed' ? 'opacity(0.65)' : 'none'};
 
 	&:hover {
 		filter: opacity(0.65);
