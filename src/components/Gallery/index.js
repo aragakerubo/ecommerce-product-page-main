@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { nanoid } from "nanoid";
 
 import { Wrapper, MainImg, MiniImg } from "./Gallery.styles";
@@ -14,6 +14,11 @@ export default function Gallery(props) {
 		let Img = props.productImages[id].image;
 		setMainImage(Img);
 		setSelectedImage(id);
+	}
+
+	function handleLightbox() {
+		props.setDisplayLightbox(true);
+		props.setMainImageLightbox(selectedImage);
 	}
 
 	let ImageGrid = props.productImages.map((image) => {
@@ -32,7 +37,7 @@ export default function Gallery(props) {
 
 	return (
 		<Wrapper>
-			<MainImg>
+			<MainImg onClick={handleLightbox}>
 				<img alt="product" src={mainImage} />
 			</MainImg>
 
