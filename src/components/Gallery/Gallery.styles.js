@@ -15,6 +15,7 @@ export const MainImg = styled.div`
 	border-radius: 10px;
 	border-sizing: border-box;
 	overflow: hidden;
+	cursor: pointer;
 
 	img {
 		width: 100%;
@@ -28,10 +29,12 @@ export const MiniImg = styled(MainImg)`
 	border-radius: 5px;
 	cursor: pointer;
 	outline: ${(props) =>
-		props.isSelected ? "0.2rem solid var(--orange)" : "none"};
-	filter: ${(props) => (props.isSelected ? "opacity(0.65)" : "none")};
+		props.isSelected ? "0.15rem solid var(--orange)" : "none"};
+	img {
+		filter: ${(props) => (props.isSelected ? "opacity(0.65)" : "none")};
+	}
 
-	&:hover {
+	img:hover {
 		filter: opacity(0.65);
 	}
 `;
