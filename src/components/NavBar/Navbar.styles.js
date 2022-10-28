@@ -7,6 +7,15 @@ export const Wrapper = styled.nav`
 	align-items: center;
 	height: 75px;
 	border-bottom: 0.5px solid var(--blackLine);
+
+	@media (max-width: 1300px) {
+		padding: 0 3rem;
+	}
+
+	@media (max-width: 850px) {
+		height: 50px;
+		padding: 0 1rem;
+	}
 `;
 
 export const LogoMenu = styled.div`
@@ -15,11 +24,28 @@ export const LogoMenu = styled.div`
 	align-items: center;
 	height: 100%;
 	column-gap: 2.75em;
+
+	@media (max-width: 850px) {
+		column-gap: 1em;
+	}
 `;
 
 export const Logo = styled.img`
 	width: 100px;
 	cursor: pointer;
+`;
+
+export const BarIcon = styled(Logo)`
+	display: none;
+
+	@media (max-width: 850px) {
+		display: block;
+		width: 0.8rem;
+
+		&:hover {
+			filter: brightness(40%);
+		}
+	}
 `;
 
 export const Menu = styled.ul`
@@ -42,16 +68,77 @@ export const Menu = styled.ul`
 		color: var(--darkGrayishBlue);
 	}
 
+	li:first-child {
+		display: none;
+	}
+
 	li:hover,
 	li:active {
 		border-bottom: 3px solid var(--orange);
 		margin-bottom: -3px;
 		color: var(--black);
 	}
+
+	@media (max-width: 850px) {
+		display: ${(props) => (props.active ? "flex" : "none")};
+		justify-content: initial;
+		align-items: flex-start;
+		flex-direction: column;
+		gap: 1em;
+		padding: 2em;
+		
+		width: 70%;
+		max-width: 370px;
+		background-color: var(--white);
+
+		li {
+			height: 30px;
+			font-weight: 600;
+			color: var(--black);
+		}
+
+		li:first-child {
+			display: flex;
+			margin-bottom: 2em;
+
+		}
+
+		li:first-child:hover {
+			margin-bottom: 2em;
+		}
+
+		li:hover,
+		li:active {
+			border: none;
+			margin: 0;
+		}
+`;
+
+export const Container = styled.div`
+	height: 100%;
+
+	@media (max-width: 850px) {
+		display: ${(props) => (props.active ? "block" : "none")};
+		position: fixed;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		background-color: var(--blackBackground);
+		z-index: 100000;
+	}
+`;
+
+export const CloseIcon = styled(BarIcon)`
+	width: 15px;
 `;
 
 export const CartProfile = styled(LogoMenu)`
 	column-gap: 2rem;
+
+	@media (max-width: 850px) {
+		column-gap: 1em;
+	}
 `;
 
 export const Cart = styled.div`
@@ -106,5 +193,10 @@ export const Profile = styled.div`
 	&:active,
 	&:hover {
 		outline: 0.1rem solid var(--orange);
+	}
+
+	@media (max-width: 850px) {
+		width: 25px;
+		height: 25px;
 	}
 `;

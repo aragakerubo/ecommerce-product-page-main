@@ -5,11 +5,15 @@ export const Wrapper = styled.div`
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	grid-template-rows: 1fr;
 	width: 30%;
-	min-width: 150px;
+	min-width: 90px;
 	height: 45px;
 	border-radius: 5px;
 	overflow: hidden;
 	background-color: var(--white);
+
+	@media (max-width: 550px) {
+		width: 100%;
+	}
 `;
 
 export const Button = styled.button`

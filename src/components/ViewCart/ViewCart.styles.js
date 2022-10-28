@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 	position: absolute;
 	bottom: -15rem;
 	right: 0;
-	width: 70%;
+	width: 90%;
 	max-width: 300px;
 	height: 250px;
 	border-radius: 10px;
@@ -15,6 +15,18 @@ export const Wrapper = styled.div`
 	box-shadow: 0 5px 20px -8px var(--darkGrayishBlue);
 	overflow: hidden;
 	z-index: 1000;
+
+	@media (max-width: 1300px) {
+		right: 1rem;
+	}
+
+	@media (max-width: 400px) {
+		bottom: -16.25em;
+		right: 0;
+		left: 0;
+		margin-right: auto;
+		margin-left: auto;
+	}
 `;
 
 export const Title = styled.div`

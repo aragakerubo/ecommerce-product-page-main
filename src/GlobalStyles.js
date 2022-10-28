@@ -22,17 +22,29 @@ export const GlobalStyles = createGlobalStyle`
         --blackLine: hsla(0, 100%, 0%, 0.15);
         --blackBackground: hsla(0, 100%, 0%, 0.75);
     }
-    
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+      
     * {
         box-sizing: border-box;
         font-family: 'Kumbh Sans', Helvetica, sans-serif;
     }
+
     body {
         margin: 0;
         padding: 0 12em;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
         p {
             font-size: 16px;
             margin: 0;
+        }
+
+        @media (max-width: 1300px) {
+            padding: 0;
         }
         
     }
