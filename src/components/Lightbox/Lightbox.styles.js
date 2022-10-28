@@ -1,24 +1,28 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-	position: absolute;
+	position: fixed;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
-	width: 100vw;
+	height: 100%;
+	width: 100%;
 	top: 0;
 	left: 0;
 	background-color: var(--blackBackground);
 	z-index: 10000;
+
+	::-webkit-scrollbar {
+		display: none;
+	}
 `;
 
 export const Container = styled.div`
 	display: flex;
 	justify-content: end;
 	padding: 1rem 0;
-	width: 75vw;
+	width: 75%;
 	max-width: 450px;
 `;
 
@@ -53,9 +57,13 @@ export const PreviousButton = styled.button`
 	border-radius: 50%;
 	border: none;
 	text-align: center;
+	visibility: ${(props) => (props.displayPrevButton ? "visible" : "hidden")};
 
 	img {
 		vertical-align: middle;
+		width: 40%;
+		height: 40%;
+		object-fit: cover;
 	}
 
 	&:hover {
@@ -65,11 +73,18 @@ export const PreviousButton = styled.button`
 				contrast(102%);
 		}
 	}
+
+	@media (max-width: 550px) {
+		height: 35px;
+		width: 35px;
+	}
 `;
 
 export const NextButton = styled(PreviousButton)`
 	left: auto;
 	right: -5%;
+
+	visibility: ${(props) => (props.displayNextButton ? "visible" : "hidden")};
 `;
 
 export const MiniImgSection = styled(Container)`

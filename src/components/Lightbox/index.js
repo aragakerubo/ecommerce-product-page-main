@@ -25,6 +25,9 @@ export default function Lightbox(props) {
 		props.productImages[selectedImageId].id
 	);
 
+	let displayNextButton = selectedImage < props.productImages.length - 1;
+	let displayPrevButton = parseInt(selectedImage) > 0;
+
 	function handleSetMainImage(event) {
 		let id = event.currentTarget.id;
 		let Img = props.productImages[id].image;
@@ -37,9 +40,7 @@ export default function Lightbox(props) {
 	}
 
 	function handlePrevious() {
-		let startingPoint = parseInt(selectedImage);
-
-		if (startingPoint > 0) {
+		if (displayPrevButton) {
 			setSelectedImage((prevState) => {
 				let newId = parseInt(prevState) - 1;
 				let Img = props.productImages[newId].image;
@@ -51,10 +52,7 @@ export default function Lightbox(props) {
 	}
 
 	function handleNext() {
-		let gridLength = parseInt(props.productImages.length);
-		let startingPoint = parseInt(selectedImage) + 1;
-
-		if (startingPoint < gridLength) {
+		if (displayNextButton) {
 			setSelectedImage((prevState) => {
 				let newId = parseInt(prevState) + 1;
 				let Img = props.productImages[newId].image;
@@ -85,13 +83,19 @@ export default function Lightbox(props) {
 				<CloseButton src={closeIcon} onClick={handleLightbox} />
 			</Container>
 			<Section>
-				<PreviousButton onClick={handlePrevious}>
-					<img alt="Prevoius" src={previousIcon} />
+				<PreviousButton
+					onClick={handlePrevious}
+					displayPrevButton={displayPrevButton}
+				>
+					<img alt="Previous" src={previousIcon} />
 				</PreviousButton>
 				<MainImg>
 					<img alt="product" src={mainImage} />
 				</MainImg>
-				<NextButton onClick={handleNext}>
+				<NextButton
+					onClick={handleNext}
+					displayNextButton={displayNextButton}
+				>
 					<img alt="Next" src={nextIcon} />
 				</NextButton>
 			</Section>

@@ -4,6 +4,12 @@ export const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	row-gap: 0.5em;
+
+	@media (max-width: 550px) {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
 `;
 
 export const Container = styled.div`
@@ -15,6 +21,10 @@ export const Container = styled.div`
 export const Price = styled.p`
 	font-size: 2em;
 	font-weight: bold;
+
+	@media (max-width: 550px) {
+		font-size: 1.5em;
+	}
 `;
 
 export const Discount = styled.p`
@@ -24,6 +34,10 @@ export const Discount = styled.p`
 	font-weight: 600;
 	padding: 0.2em;
 	border-radius: 5px;
+
+	@media (max-width: 550px) {
+		font-size: 0.8em;
+	}
 `;
 
 export const OriginalPrice = styled.p`

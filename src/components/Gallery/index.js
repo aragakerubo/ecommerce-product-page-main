@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 import { nanoid } from "nanoid";
 
-import { Wrapper, MainImg, MiniImg } from "./Gallery.styles";
+import {
+	Wrapper,
+	MainImg,
+	MiniImg,
+	PreviousButton,
+	NextButton,
+} from "./Gallery.styles";
+import previousIcon from "../../images/icon-previous.svg";
+import nextIcon from "../../images/icon-next.svg";
 
 export default function Gallery(props) {
 	const [mainImage, setMainImage] = useState(props.productImages[0].image);
 	const [selectedImage, setSelectedImage] = useState(
 		props.productImages[0].id
 	);
+
+	let displayNextButton = selectedImage < props.productImages.length - 1;
+	let displayPrevButton = parseInt(selectedImage) > 0;
 
 	function handleSetMainImage(event) {
 		let id = event.currentTarget.id;
@@ -19,6 +30,30 @@ export default function Gallery(props) {
 	function handleLightbox() {
 		props.setDisplayLightbox(true);
 		props.setMainImageLightbox(selectedImage);
+	}
+
+	function handlePrevious() {
+		if (displayPrevButton) {
+			setSelectedImage((prevState) => {
+				let newId = parseInt(prevState) - 1;
+				let Img = props.productImages[newId].image;
+				setMainImage(Img);
+
+				return newId;
+			});
+		}
+	}
+
+	function handleNext() {
+		if (displayNextButton) {
+			setSelectedImage((prevState) => {
+				let newId = parseInt(prevState) + 1;
+				let Img = props.productImages[newId].image;
+				setMainImage(Img);
+
+				return newId;
+			});
+		}
 	}
 
 	let ImageGrid = props.productImages.map((image) => {
@@ -37,8 +72,20 @@ export default function Gallery(props) {
 
 	return (
 		<Wrapper>
-			<MainImg onClick={handleLightbox}>
-				<img alt="product" src={mainImage} />
+			<MainImg>
+				<PreviousButton
+					onClick={handlePrevious}
+					displayPrevButton={displayPrevButton}
+				>
+					<img alt="Previous" src={previousIcon} />
+				</PreviousButton>
+				<img alt="product" src={mainImage} onClick={handleLightbox} />
+				<NextButton
+					onClick={handleNext}
+					displayNextButton={displayNextButton}
+				>
+					<img alt="Next" src={nextIcon} />
+				</NextButton>
 			</MainImg>
 
 			{ImageGrid}
