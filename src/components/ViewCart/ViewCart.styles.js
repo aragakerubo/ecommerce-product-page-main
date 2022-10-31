@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
 		right: 1rem;
 	}
 
-	@media (max-width: 400px) {
+	@media (max-width: 550px) {
 		bottom: -16.25em;
 		right: 0;
 		left: 0;
