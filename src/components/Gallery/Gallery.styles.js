@@ -23,7 +23,7 @@ export const MainImg = styled.div`
 	grid-area: 1 / 1 / span 4 / span 4;
 	background-color: var(--white);
 	border-radius: 10px;
-	border-sizing: border-box;
+	box-sizing: border-box;
 	overflow: hidden;
 	cursor: pointer;
 
